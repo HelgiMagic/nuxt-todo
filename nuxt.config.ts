@@ -4,4 +4,7 @@ export default defineNuxtConfig({
   css: [
     '@/public/styles.css',
   ],
+  modules: [
+    '@pinia/nuxt',
+  ],
 });
