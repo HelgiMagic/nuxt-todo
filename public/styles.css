@@ -29,9 +29,10 @@ body {
   font-family: 'Inter';
   line-height: 140%;
 
-  background-color: ;
+  background-color: var(--gray-600);
 }
 
 button {
   font-family: inherit;
+  cursor: pointer;
 }
