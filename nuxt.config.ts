@@ -6,5 +6,6 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@pinia/nuxt',
+    '@vee-validate/nuxt',
   ],
 });

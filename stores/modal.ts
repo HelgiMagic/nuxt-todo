@@ -3,7 +3,7 @@ type State = {
 }
 
 const useModalStore = defineStore('modal', {
-  state: (): State => ({ active: true }),
+  state: (): State => ({ active: false }),
   actions: {
     setActive(name: boolean) {
       this.active = name;

@@ -1,7 +1,7 @@
 <template>
-  <button>
+  <button class="new-task-button">
     Создать
-    <img src="/public/plus.svg" alt="plus image">
+    <img src="/public/plus.svg" alt="plus image" />
   </button>
 </template>
 
@@ -14,7 +14,7 @@ button {
   border-radius: 8px;
 
   background: var(--blue-dark);
-  color: #F2F2F2;
+  color: #f2f2f2;
   font-weight: 700;
   font-size: 14px;
 
@@ -22,12 +22,14 @@ button {
   justify-content: center;
   align-items: center;
   gap: 8px;
-
-  position: relative;
-  transform: translateY(-50%);
 }
 
 button:hover {
   background-color: var(--blue);
+}
+
+button:disabled {
+  background-color: var(--gray-300);
+  cursor: not-allowed;
 }
 </style>
