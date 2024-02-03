@@ -36,16 +36,6 @@ todosStore.setTodos(data);
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  width: 95%;
-  max-width: 736px;
-  margin: auto;
-}
-
 .new-task-button {
   position: relative;
   transform: translateY(-50%);

@@ -19,6 +19,8 @@ const handleRemove = () => {
 
 const h3Class = computed(() => (props.data.done ? 'text-done' : ''));
 const textClass = computed(() => (props.data.done ? 'text text-done' : 'text'));
+
+const linkText = `/todos/${props.data.id}`;
 </script>
 
 <template>
@@ -46,7 +48,7 @@ const textClass = computed(() => (props.data.done ? 'text text-done' : 'text'));
         </div>
       </div>
 
-      <div :class="textClass">{{ data.text }}</div>
+      <NuxtLink :class="textClass" :to="linkText">{{ data.text }}</NuxtLink>
     </div>
 
     <div class="controls">
@@ -61,7 +63,7 @@ const textClass = computed(() => (props.data.done ? 'text text-done' : 'text'));
   </div>
 </template>
 
-<style scoped>
+<style>
 .task {
   display: flex;
   align-items: flex-start;
@@ -127,7 +129,7 @@ h3 {
   display: flex;
   justify-content: space-between;
 
-  width: 137px;
+  width: 138px;
   height: 14px;
 
   font-size: 10px;
@@ -148,6 +150,8 @@ h3 {
   word-break: break-all;
 
   cursor: pointer;
+
+  text-decoration: none;
 }
 
 .text-done {
