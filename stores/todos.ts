@@ -1,21 +1,31 @@
 type Todo = {
+  title: string;
+  text: string;
+  done: boolean;
+  id: number;
   dateOfCreation: string;
   dateOfExpiring: string;
-  done: boolean;
-  header: string;
-  text: string;
-  id: number;
 };
 
 type State = {
   todos: Todo[];
-}
+};
 
 const useTodosStore = defineStore('todos', {
   state: (): State => ({ todos: [] }),
   actions: {
     addTodo(todo: Todo) {
       this.todos.push(todo);
+    },
+    removeTodo(id: number) {
+      const newTodos = this.todos.filter((todo) => todo.id !== id);
+
+      this.todos = newTodos;
+    },
+    swapDone(id: number) {
+      const todo = this.todos.find((todo) => todo.id === id);
+
+      todo.done = !todo.done;
     },
     // deleteTodo(deletingId) {
     //   const newTodos = this.todos.filter((todo) => todo.id !== deletingId);

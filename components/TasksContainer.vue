@@ -3,7 +3,9 @@ import useTodosStore from '../stores/todos';
 
 const todosStore = useTodosStore();
 const todosLength = computed(() => todosStore.todos.length);
-const doneLength = computed(() => todosStore.todos.filter((todo) => todo.done).length);
+const doneLength = computed(
+  () => todosStore.todos.filter((todo) => todo.done).length
+);
 </script>
 
 <template>
@@ -20,6 +22,16 @@ const doneLength = computed(() => todosStore.todos.filter((todo) => todo.done).l
       <p class="counter" v-else>{{ doneLength }} из {{ todosLength }}</p>
     </div>
   </div>
+
+  <div class="stub" v-if="todosLength === 0">
+    <img src="/public/clipboard.svg" alt="Clipboard image" />
+    <p class="bold">У вас ещё нет созданных задач</p>
+    <p>Создавайте задачи и организуйте свои дела</p>
+  </div>
+
+  <div class="tasks">
+    <Task v-for="task in todosStore.todos" :data="task" :key="task.id" />
+  </div>
 </template>
 
 <style scoped>
@@ -28,6 +40,9 @@ const doneLength = computed(() => todosStore.todos.filter((todo) => todo.done).l
   justify-content: space-between;
 
   width: 100%;
+
+  margin-top: calc(66px - 25px);
+  margin-bottom: 24px;
 }
 
 .header-group {
@@ -56,7 +71,7 @@ const doneLength = computed(() => todosStore.todos.filter((todo) => todo.done).l
   gap: 8px;
 }
 
-p {
+.header p {
   font-size: 14px;
 }
 
@@ -66,5 +81,39 @@ p {
 
 .purple {
   color: var(--purple);
+}
+
+.stub {
+  border-radius: 8px;
+  border-top: 1px solid var(--gray-400);
+
+  width: 100%;
+  padding: 64px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stub p {
+  font-size: 16px;
+  color: var(--gray-300);
+}
+
+.stub img {
+  margin-bottom: 16px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  gap: 12px;
+  margin-bottom: 50px;
 }
 </style>

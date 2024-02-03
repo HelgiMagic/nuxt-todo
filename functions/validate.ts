@@ -8,16 +8,14 @@ function textValidation(value: string) {
   return value.length > 2 ? true : 'Минимум 3 символа';
 }
 
-function dateValidation(date: string) {
-  const dateArray = date.split('.');
-  if (dateArray.length < 2) return 'Введите дату в формате DD.MM.YYY';
+function dateValidation(value: string = '') {
+  const dateArray = value.split('.');
+  if (dateArray.length < 3) return 'Введите дату в формате DD.MM.YYY';
 
   const [day, month, year] = dateArray;
   if (
-    day.length > 2 ||
-    day.length < 1 ||
-    month.length > 2 ||
-    month.length < 1 ||
+    day.length > 2 || day.length < 1 ||
+    month.length > 2 || month.length < 1 ||
     year.length !== 4
   )
     return 'Введите дату в формате DD.MM.YYY';
