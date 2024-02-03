@@ -120,7 +120,8 @@ input {
 }
 
 .modal {
-  width: 457px;
+  width: 95%;
+  max-width: 457px;
   padding: 20px;
 
   border-radius: 10px;

@@ -19,7 +19,7 @@ interface Todo {
   dateOfExpiring: string;
 }
 
-const data:Todo[] = await $fetch(routes.main(), {
+const data: Todo[] = await $fetch(routes.main(), {
   method: 'GET',
 });
 
@@ -41,7 +41,8 @@ todosStore.setTodos(data);
   flex-direction: column;
   align-items: center;
 
-  width: 736px;
+  width: 95%;
+  max-width: 736px;
   margin: auto;
 }
 

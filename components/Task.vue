@@ -146,6 +146,8 @@ h3 {
   white-space: normal;
   word-wrap: break-word;
   word-break: break-all;
+
+  cursor: pointer;
 }
 
 .text-done {
