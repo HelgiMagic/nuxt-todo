@@ -1,51 +1,54 @@
-type Todo = {
+import routes from "~/routes";
+
+interface Todo {
   title: string;
   text: string;
   done: boolean;
-  id: number;
   dateOfCreation: string;
   dateOfExpiring: string;
-};
+}
+
+interface TodoWithId extends Todo {
+  id: number;
+}
 
 type State = {
-  todos: Todo[];
+  todos: TodoWithId[];
 };
 
 const useTodosStore = defineStore('todos', {
   state: (): State => ({ todos: [] }),
   actions: {
-    addTodo(todo: Todo) {
+    setTodos(todos: TodoWithId[]) {
+      this.todos = todos;
+    },
+    async addTodo(body: Todo) {
+      const todo: TodoWithId = await $fetch(routes.main(), {
+        method: 'POST',
+        body,
+      });
+
       this.todos.push(todo);
     },
-    removeTodo(id: number) {
+    async removeTodo(id: number) {
       const newTodos = this.todos.filter((todo) => todo.id !== id);
-
       this.todos = newTodos;
+
+      await $fetch(routes.certain(id), {
+        method: 'DELETE',
+      });
     },
-    swapDone(id: number) {
+    async swapDone(id: number) {
       const todo = this.todos.find((todo) => todo.id === id);
+      if (todo === null || todo === undefined) throw new Error('todo is undefined!');
 
       todo.done = !todo.done;
+
+      await $fetch(routes.certain(id), {
+        method: 'PUT',
+        body: todo,
+      });
     },
-    // deleteTodo(deletingId) {
-    //   const newTodos = this.todos.filter((todo) => todo.id !== deletingId);
-    //   this.unarchiveTodo(deletingId);
-
-    //   this.todos = newTodos;
-    // },
-    // archiveTodo(archivingId) {
-    //   const elem = this.todos.find((todo) => todo.id === archivingId);
-    //   elem.archived = true;
-
-    //   this.archivedTodos.push(archivingId);
-    // },
-    // unarchiveTodo(unarchivingId) {
-    //   const elem = this.todos.find((todo) => todo.id === unarchivingId);
-    //   elem.archived = false;
-
-    //   const newArchived = this.archivedTodos.filter((id) => id !== unarchivingId);
-    //   this.archivedTodos = newArchived;
-    // },
   },
 });
 

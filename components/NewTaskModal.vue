@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import useTodosStore from '../stores/todos';
 import useModalStore from '~/stores/modal';
-import getUniqId from '../functions/getUniqId';
-import { ref, computed } from 'vue';
+
+import { computed } from 'vue';
 import { useForm } from 'vee-validate';
 import {
   required,
@@ -34,37 +34,26 @@ const [title, titleProps] = defineField('title');
 const [text, textProps] = defineField('text');
 const [date, dateProps] = defineField('date');
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
-
-  todosStore.addTodo({
-    title: values.title,
-    text: values.text,
-    done: false,
-    id: getUniqId(),
-    dateOfCreation: getCurrentDate(),
-    dateOfExpiring: values.date,
-  });
-});
-
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-
-//   todosStore.addTodo({
-//     name: text.value,
-//     archived: false,
-//     id: getUniqId(),
-//   });
-
-//   text.value = '';
-// };
-
 const handleCloseModal = () => {
   modalStore.setActive(false);
   resetForm();
 };
 
-// const test = computed(() => console.log(errors.value));
+const onSubmit = handleSubmit(async (values) => {
+  console.log(values);
+
+  const task = {
+    title: values.title,
+    text: values.text,
+    done: false,
+    dateOfCreation: getCurrentDate(),
+    dateOfExpiring: values.date,
+  };
+
+  todosStore.addTodo(task);
+  handleCloseModal();
+});
+
 const isDisabled = computed(() =>
   Object.values(errors.value).length === 0 ? false : true
 );
