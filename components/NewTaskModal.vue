@@ -2,7 +2,6 @@
 import useTodosStore from '../stores/todos';
 import useModalStore from '~/stores/modal';
 
-import { computed } from 'vue';
 import { useForm } from 'vee-validate';
 import {
   required,
