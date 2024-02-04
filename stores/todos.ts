@@ -38,6 +38,15 @@ const useTodosStore = defineStore('todos', {
         method: 'DELETE',
       });
     },
+    async editTodo(id: number, body: Todo) {
+      const todo: TodoWithId = await $fetch(routes.certain(id), {
+        method: 'PUT',
+        body,
+      });
+
+      const index = this.todos.findIndex((todo) => todo.id === id);
+      this.todos[index] = todo;
+    },
     async swapDone(id: number) {
       const todo = this.todos.find((todo) => todo.id === id);
       if (todo === null || todo === undefined) throw new Error('todo is undefined!');

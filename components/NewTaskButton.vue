@@ -1,6 +1,12 @@
+<script setup>
+const props = defineProps(['variant']);
+
+const text = props.variant === 'edit' ? 'Изменить' : 'Создать';
+</script>
+
 <template>
   <button class="new-task-button">
-    Создать
+    {{ text }}
     <img src="/public/plus.svg" alt="plus image" />
   </button>
 </template>

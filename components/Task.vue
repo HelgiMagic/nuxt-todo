@@ -1,8 +1,10 @@
 <script setup>
 import useTodosStore from '~/stores/todos';
+import useModalStore from '~/stores/modal';
 const props = defineProps(['data']);
 
 const todosStore = useTodosStore();
+const modalStore = useModalStore();
 
 const handleDone = () => {
   todosStore.swapDone(props.data.id);
@@ -15,6 +17,11 @@ const handleRemove = () => {
   todosStore.removeTodo(props.data.id);
 
   console.log(todosStore.todos);
+};
+
+const handleEdit = () => {
+  modalStore.setActiveElement(props.data.id);
+  modalStore.setActive('editTask');
 };
 
 const h3Class = computed(() => (props.data.done ? 'text-done' : ''));
@@ -56,7 +63,7 @@ const linkText = `/todos/${props.data.id}`;
         <img src="/public/trash.svg" alt="Trash image" />
       </button>
 
-      <button class="svgButton">
+      <button class="svgButton" @click="handleEdit">
         <img src="/public/edit.svg" alt="Edit image" />
       </button>
     </div>
@@ -162,5 +169,12 @@ h3 {
 .controls {
   display: flex;
   gap: 2px;
+}
+
+@media (max-width: 450px) {
+  .row {
+    flex-direction: column-reverse;
+    gap: 15px;
+  }
 }
 </style>

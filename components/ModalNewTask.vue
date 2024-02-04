@@ -14,11 +14,11 @@ const todosStore = useTodosStore();
 const modalStore = useModalStore();
 
 const modalClass = computed(() =>
-  modalStore.active ? 'modal d-flex' : 'modal'
+  modalStore.active === 'newTask' ? 'modal d-flex' : 'modal'
 );
 
 const overlayClass = computed(() =>
-  modalStore.active ? 'overlay d-block' : 'overlay'
+  modalStore.active === 'newTask' ? 'overlay d-block' : 'overlay'
 );
 
 const { defineField, handleSubmit, errors, resetForm } = useForm({
@@ -34,7 +34,7 @@ const [text, textProps] = defineField('text');
 const [date, dateProps] = defineField('date');
 
 const handleCloseModal = () => {
-  modalStore.setActive(false);
+  modalStore.setActive(null);
   resetForm();
 };
 

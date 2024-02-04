@@ -1,12 +1,16 @@
 type State = {
-  active: boolean;
+  active: 'newTask' | 'editTask' | null;
+  elementId: number;
 }
 
 const useModalStore = defineStore('modal', {
-  state: (): State => ({ active: false }),
+  state: (): State => ({ active: null, elementId: 0 }),
   actions: {
-    setActive(name: boolean) {
+    setActive(name: State['active']) {
       this.active = name;
+    },
+    setActiveElement(id: State['elementId']) {
+      this.elementId = id;
     },
   },
 });

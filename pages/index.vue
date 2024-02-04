@@ -7,7 +7,7 @@ const modalStore = useModalStore();
 const todosStore = useTodosStore();
 
 const handleClick = () => {
-  modalStore.setActive(true);
+  modalStore.setActive('newTask');
 };
 
 interface Todo {
@@ -30,7 +30,7 @@ todosStore.setTodos(data);
   <main>
     <div class="container">
       <NewTaskButton @click="handleClick" />
-      <TasksContainer></TasksContainer>
+      <TasksContainer />
     </div>
   </main>
 </template>
