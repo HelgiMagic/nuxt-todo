@@ -3,12 +3,9 @@ import useTodosStore from '../stores/todos';
 import useModalStore from '~/stores/modal';
 
 import { useForm } from 'vee-validate';
-import {
-  required,
-  textValidation,
-  dateValidation,
-} from '../functions/validate';
+import * as validate from '../functions/validate';
 import getCurrentDate from '../functions/getCurrentDate';
+import getInputClass from '../functions/getInputClass'
 
 const todosStore = useTodosStore();
 const modalStore = useModalStore();
@@ -24,9 +21,9 @@ const { defineField, handleSubmit, errors, resetForm } = useForm({
     date: activeTask.value?.dateOfExpiring,
   },
   validationSchema: {
-    title: required,
-    text: textValidation,
-    date: dateValidation,
+    title: validate.required,
+    text: validate.textValidation,
+    date: validate.dateValidation,
   },
 });
 
@@ -60,6 +57,10 @@ const onSubmit = handleSubmit(async (values) => {
 const isDisabled = computed(() =>
   Object.values(errors.value).length === 0 ? false : true
 );
+
+const inputClass = computed(() => getInputClass('title', errors));
+const textClass = computed(() => getInputClass('text', errors));
+const dateClass = computed(() => getInputClass('date', errors));
 </script>
 
 <template>
@@ -73,17 +74,13 @@ const isDisabled = computed(() =>
     </div>
 
     <form @submit="onSubmit" class="modalForm">
-      <input v-model="title" v-bind="titleProps" placeholder="Заголовок" />
+      <input v-model="title" v-bind="titleProps" placeholder="Заголовок" :class="inputClass" />
       <span class="error">{{ errors.title }}</span>
 
-      <input v-model="text" v-bind="textProps" placeholder="Текст" />
+      <input v-model="text" v-bind="textProps" placeholder="Текст" :class="textClass" />
       <span class="error">{{ errors.text }}</span>
 
-      <input
-        v-model="date"
-        v-bind="dateProps"
-        placeholder="Дата окончания (DD.MM.YYYY)"
-      />
+      <input v-model="date" v-bind="dateProps" placeholder="Дата окончания (DD.MM.YYYY)" :class="dateClass" />
       <span class="error">{{ errors.date }}</span>
 
       <NewTaskButton :disabled="isDisabled" variant="edit"></NewTaskButton>
@@ -92,26 +89,6 @@ const isDisabled = computed(() =>
 </template>
 
 <style scoped>
-input {
-  outline: none;
-
-  border-radius: 8px;
-  border: 1px solid var(--gray-700);
-  background-color: var(--gray-500);
-
-  color: var(--gray-300);
-  font-size: 14px;
-  font-weight: 400;
-
-  height: 38px;
-
-  padding-left: 16px;
-}
-
-input:focus {
-  border: 1px solid var(--purple-dark);
-}
-
 h2 {
   font-size: 20px;
   color: white;
