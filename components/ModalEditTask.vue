@@ -74,7 +74,7 @@ const isDisabled = computed(() =>
       </button>
     </div>
 
-    <form @submit="onSubmit">
+    <form @submit="onSubmit" class="modalForm">
       <input v-model="title" v-bind="titleProps" placeholder="Заголовок" />
       <span class="error">{{ errors.title }}</span>
 
@@ -94,13 +94,6 @@ const isDisabled = computed(() =>
 </template>
 
 <style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-}
-
 input {
   outline: none;
 
@@ -117,38 +110,9 @@ input {
   padding-left: 16px;
 }
 
-.error {
-  color: var(--danger);
-  font-size: 10px;
-
-  margin-top: -8px;
-}
-
-.modal {
-  width: 95%;
-  max-width: 457px;
-  padding: 20px;
-
-  border-radius: 10px;
-  border: 1px solid var(--gray-500);
-
-  background: var(--gray-400);
-
-  gap: 20px;
-  flex-direction: column;
-}
-
-.first-row {
-  justify-content: space-between;
-}
-
 h2 {
   font-size: 20px;
   color: white;
   font-weight: 700;
-}
-
-.d-flex {
-  display: flex;
 }
 </style>
