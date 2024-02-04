@@ -59,11 +59,11 @@ const linkText = `/todos/${props.data.id}`;
     </div>
 
     <div class="controls">
-      <button class="svgButton" @click="handleRemove">
+      <button class="svgButton" @click="handleRemove" id="trash">
         <img src="/trash.svg" alt="Trash image" />
       </button>
 
-      <button class="svgButton" @click="handleEdit">
+      <button class="svgButton" @click="handleEdit" v-if="!props.data.done">
         <img src="/edit.svg" alt="Edit image" />
       </button>
     </div>
@@ -71,6 +71,10 @@ const linkText = `/todos/${props.data.id}`;
 </template>
 
 <style>
+#trash img:hover {
+  content: url('/trash-hover.svg');
+}
+
 .task {
   display: flex;
   align-items: flex-start;
