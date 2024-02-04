@@ -1,5 +1,5 @@
 <script setup>
-import routes from '~/routes';
+import routes from '~/functions/routes';
 
 const route = useRoute();
 

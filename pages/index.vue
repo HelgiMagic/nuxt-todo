@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import routes from '~/routes';
+import routes from '~/functions/routes';
 import useModalStore from '~/stores/modal';
 import useTodosStore from '../stores/todos';
 

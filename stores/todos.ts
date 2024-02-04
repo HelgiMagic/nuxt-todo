@@ -1,4 +1,4 @@
-import routes from "~/routes";
+import routes from '~/functions/routes';
 
 interface Todo {
   title: string;
@@ -49,7 +49,7 @@ const useTodosStore = defineStore('todos', {
     },
     async swapDone(id: number) {
       const todo = this.todos.find((todo) => todo.id === id);
-      if (todo === null || todo === undefined) throw new Error('todo is undefined!');
+      if (todo === undefined) throw new Error('todo is undefined!');
 
       todo.done = !todo.done;
 
