@@ -13,14 +13,6 @@ import getCurrentDate from '../functions/getCurrentDate';
 const todosStore = useTodosStore();
 const modalStore = useModalStore();
 
-const modalClass = computed(() =>
-  modalStore.active === 'newTask' ? 'modal d-flex' : 'modal'
-);
-
-const overlayClass = computed(() =>
-  modalStore.active === 'newTask' ? 'overlay d-block' : 'overlay'
-);
-
 const { defineField, handleSubmit, errors, resetForm } = useForm({
   validationSchema: {
     title: required,
@@ -59,8 +51,8 @@ const isDisabled = computed(() =>
 </script>
 
 <template>
-  <div :class="overlayClass"></div>
-  <div :class="modalClass">
+  <div class="overlay d-block"></div>
+  <div class="modal d-flex">
     <div class="d-flex first-row">
       <h2>Создать задачу</h2>
       <button class="svgButton" @click="handleCloseModal">
