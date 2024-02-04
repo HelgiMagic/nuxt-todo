@@ -47,7 +47,7 @@ const isDisabled = computed(() =>
   Object.values(errors.value).length === 0 ? false : true
 );
 
-const inputClass = computed(() => getInputClass('title', errors));
+const titleClass = computed(() => getInputClass('title', errors));
 const textClass = computed(() => getInputClass('text', errors));
 const dateClass = computed(() => getInputClass('date', errors));
 </script>
@@ -63,7 +63,7 @@ const dateClass = computed(() => getInputClass('date', errors));
     </div>
 
     <form @submit="onSubmit" class="modalForm">
-      <input v-model="title" v-bind="titleProps" placeholder="Заголовок" :class="inputClass" />
+      <input v-model="title" v-bind="titleProps" placeholder="Заголовок" :class="titleClass" />
       <span class="error">{{ errors.title }}</span>
 
       <input v-model="text" v-bind="textProps" placeholder="Текст" :class="textClass" />
