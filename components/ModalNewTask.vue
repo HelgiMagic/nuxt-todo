@@ -134,6 +134,10 @@ input {
   padding-left: 16px;
 }
 
+input:focus {
+  border: 1px solid var(--purple-dark);
+}
+
 h2 {
   font-size: 20px;
   color: white;
