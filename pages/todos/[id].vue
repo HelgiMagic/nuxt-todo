@@ -5,13 +5,10 @@ const route = useRoute();
 
 const { data } = await useFetch(routes.certain(route.params.id));
 
-console.log(data.value);
-
 useHead({
   title: data.value.title,
   meta: [{ name: 'description', content: data.value.text }],
 });
-console.log(route.params.id); // { id: '123' }
 </script>
 
 <template>

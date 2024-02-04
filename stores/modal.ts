@@ -1,4 +1,4 @@
-type State = {
+interface State {
   active: 'newTask' | 'editTask' | null;
   elementId: number;
 }

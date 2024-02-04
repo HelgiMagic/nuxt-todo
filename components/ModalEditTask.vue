@@ -57,8 +57,6 @@ const onSubmit = handleSubmit(async (values) => {
   handleCloseModal();
 });
 
-onMounted(() => console.log('mounted!'));
-
 const isDisabled = computed(() =>
   Object.values(errors.value).length === 0 ? false : true
 );

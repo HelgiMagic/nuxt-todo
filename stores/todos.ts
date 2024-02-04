@@ -12,7 +12,7 @@ interface TodoWithId extends Todo {
   id: number;
 }
 
-type State = {
+interface State {
   todos: TodoWithId[];
 };
 
