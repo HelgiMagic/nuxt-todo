@@ -70,7 +70,7 @@ const isDisabled = computed(() =>
     <div class="d-flex first-row">
       <h2>Редактирование задачи</h2>
       <button class="svgButton" @click="handleCloseModal">
-        <img src="/public/closeModal.svg" alt="close modal button" />
+        <img src="/closeModal.svg" alt="close modal button" />
       </button>
     </div>
 

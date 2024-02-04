@@ -7,7 +7,7 @@ const text = props.variant === 'edit' ? 'Изменить' : 'Создать';
 <template>
   <button class="new-task-button">
     {{ text }}
-    <img src="/public/plus.svg" alt="plus image" />
+    <img src="/plus.svg" alt="plus image" />
   </button>
 </template>
 

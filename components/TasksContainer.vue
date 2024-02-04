@@ -24,7 +24,7 @@ const doneLength = computed(
   </div>
 
   <div class="stub" v-if="todosLength === 0">
-    <img src="/public/clipboard.svg" alt="Clipboard image" />
+    <img src="/clipboard.svg" alt="Clipboard image" />
     <p class="bold">У вас ещё нет созданных задач</p>
     <p>Создавайте задачи и организуйте свои дела</p>
   </div>

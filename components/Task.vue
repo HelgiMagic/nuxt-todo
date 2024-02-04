@@ -60,11 +60,11 @@ const linkText = `/todos/${props.data.id}`;
 
     <div class="controls">
       <button class="svgButton" @click="handleRemove">
-        <img src="/public/trash.svg" alt="Trash image" />
+        <img src="/trash.svg" alt="Trash image" />
       </button>
 
       <button class="svgButton" @click="handleEdit">
-        <img src="/public/edit.svg" alt="Edit image" />
+        <img src="/edit.svg" alt="Edit image" />
       </button>
     </div>
   </div>

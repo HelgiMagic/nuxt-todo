@@ -1,6 +1,6 @@
 <template>
 <header>
-  <img src="/public/rocket.svg" alt="Rocket image">
+  <img src="/rocket.svg" alt="Rocket image">
   <h1 class="blue">Nu<span class="purple">xt</span> to<span class="purple">do</span></h1>
 </header>
 </template>
