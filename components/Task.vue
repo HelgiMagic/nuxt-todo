@@ -114,6 +114,14 @@ const linkText = `/todos/${props.data.id}`;
   background-image: url(/checked.svg);
 }
 
+.check-input:hover + .check-box {
+  background-image: url(/unchecked-hover.svg);
+}
+
+.check-input:checked:hover + .check-box {
+  background-image: url(/checked-hover.svg);
+}
+
 .middle {
   display: flex;
   flex-direction: column;
