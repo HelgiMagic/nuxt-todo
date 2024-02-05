@@ -9,16 +9,20 @@ function textValidation(value: string) {
 }
 
 function dateValidation(value: string = '') {
+  const errorMessage = 'Введите дату в формате DD.MM.YYYY';
+
   const dateArray = value.split('.');
-  if (dateArray.length < 3) return 'Введите дату в формате DD.MM.YYY';
+  if (dateArray.length < 3) return errorMessage;
 
   const [day, month, year] = dateArray;
-  if (
-    day.length > 2 || day.length < 1 ||
-    month.length > 2 || month.length < 1 ||
-    year.length !== 4
-  )
-    return 'Введите дату в формате DD.MM.YYY';
+
+  const numberDay = Number(day);
+  const numberMonth = Number(month);
+  const numberYear = Number(year);
+
+  if (isNaN(numberDay) || isNaN(numberMonth) || isNaN(numberYear)) return errorMessage;
+  if (numberDay < 1 || numberMonth < 1 || numberYear < 1) return errorMessage;
+  if (numberDay > 31 || numberMonth > 12 || numberYear < 2024) return errorMessage;
 
   return true;
 }
