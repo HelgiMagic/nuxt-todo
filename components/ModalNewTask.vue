@@ -11,7 +11,7 @@ import getInputClass from '~/functions/getInputClass';
 const todosStore = useTodosStore();
 const modalStore = useModalStore();
 
-const { defineField, handleSubmit, errors, resetForm } = useForm({
+const { defineField, handleSubmit, errors } = useForm({
   validationSchema: {
     title: validate.required,
     text: validate.textValidation,
@@ -25,7 +25,6 @@ const [date, dateProps] = defineField('date');
 
 const handleCloseModal = () => {
   modalStore.setActive(null);
-  resetForm();
 };
 
 const onSubmit = handleSubmit(async (values) => {

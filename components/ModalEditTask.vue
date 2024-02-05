@@ -5,7 +5,7 @@ import useModalStore from '~/stores/modal';
 import { useForm } from 'vee-validate';
 import * as validate from '../functions/validate';
 import getCurrentDate from '../functions/getCurrentDate';
-import getInputClass from '../functions/getInputClass'
+import getInputClass from '../functions/getInputClass';
 
 const todosStore = useTodosStore();
 const modalStore = useModalStore();
@@ -14,7 +14,7 @@ const activeTask = computed(() =>
   todosStore.todos.find((todo) => todo.id === modalStore.elementId)
 );
 
-const { defineField, handleSubmit, errors, resetForm } = useForm({
+const { defineField, handleSubmit, errors } = useForm({
   initialValues: {
     title: activeTask.value?.title,
     text: activeTask.value?.text,
@@ -33,7 +33,6 @@ const [date, dateProps] = defineField('date');
 
 const handleCloseModal = () => {
   modalStore.setActive(null);
-  resetForm();
 };
 
 const onSubmit = handleSubmit(async (values) => {
