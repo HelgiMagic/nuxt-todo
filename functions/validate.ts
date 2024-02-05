@@ -9,16 +9,16 @@ function textValidation(value: string) {
 }
 
 function dateValidation(value: string = '') {
-  const errorMessage = 'Введите дату в формате DD.MM.YYYY';
-
   const dateArray = value.split('.');
-  if (dateArray.length < 3) return errorMessage;
+  if (dateArray.length < 3) return 'Введите дату в формате DD.MM.YYYY';
 
   const [day, month, year] = dateArray;
 
   const numberDay = Number(day);
   const numberMonth = Number(month);
   const numberYear = Number(year);
+
+  const errorMessage = 'Проверьте правильность указанных значений';
 
   if (isNaN(numberDay) || isNaN(numberMonth) || isNaN(numberYear)) return errorMessage;
   if (numberDay < 1 || numberMonth < 1 || numberYear < 1) return errorMessage;
