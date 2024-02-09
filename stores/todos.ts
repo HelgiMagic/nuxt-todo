@@ -14,7 +14,7 @@ interface TodoWithId extends Todo {
 
 interface State {
   todos: TodoWithId[];
-};
+}
 
 const useTodosStore = defineStore('todos', {
   state: (): State => ({ todos: [] }),
@@ -31,12 +31,16 @@ const useTodosStore = defineStore('todos', {
       this.todos.push(todo);
     },
     async removeTodo(id: number) {
-      const newTodos = this.todos.filter((todo) => todo.id !== id);
-      this.todos = newTodos;
+      try {
+        await $fetch(routes.certain(id), {
+          method: 'DELETE',
+        });
 
-      await $fetch(routes.certain(id), {
-        method: 'DELETE',
-      });
+        const newTodos = this.todos.filter((todo) => todo.id !== id);
+        this.todos = newTodos;
+      } catch {
+        console.log('error'); // сделать вывод ошибки в интерфейс
+      }
     },
     async editTodo(id: number, body: Todo) {
       const todo: TodoWithId = await $fetch(routes.certain(id), {
